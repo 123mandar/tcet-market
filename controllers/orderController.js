@@ -111,19 +111,17 @@ export const deleteOrderController = async (req, res) => {
   try {
     const { orderId } = req.params;
     const order = await orderModel.findById(orderId);
-
     if (!order) {
       return res
         .status(404)
         .json({ success: false, message: "Order not found" });
     }
-
-    await order.remove();
+    await orderModel.findByIdAndDelete(orderId);
     res
       .status(200)
       .json({ success: true, message: "Order deleted successfully" });
   } catch (error) {
-    console.error("Error deleting order:", error.message);
+    console.error("Error deleting order:", error); // More detailed logging
     res.status(500).json({ success: false, message: "Failed to delete order" });
   }
 };

@@ -16,9 +16,7 @@ const ManageOrders = () => {
     const fetchOrders = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get("/api/v1/order/seller-orders", {
-          headers: { Authorization: `Bearer ${auth.token}` },
-        });
+        const { data } = await axios.get("/api/v1/order/seller-orders");
         if (data.success) {
           setOrders(data.orders);
           setTotalSales(data.totalSales); // Set total sales from the response
@@ -40,8 +38,7 @@ const ManageOrders = () => {
     try {
       const { data } = await axios.put(
         `/api/v1/order/update-status/${orderId}`,
-        { status: newStatus },
-        { headers: { Authorization: `Bearer ${auth.token}` } }
+        { status: newStatus }
       );
 
       if (data.success) {
@@ -67,10 +64,7 @@ const ManageOrders = () => {
       }
 
       const { data } = await axios.delete(
-        `/api/v1/order/delete-order/${orderId}`,
-        {
-          headers: { Authorization: `Bearer ${auth.token}` },
-        }
+        `/api/v1/order/delete-order/${orderId}`
       );
 
       if (data.success) {
