@@ -1,0 +1,126 @@
+/* General Footer Styling */
+footer {
+  background-color: #f8f9fa; /* Light background */
+  color: #6c757d; /* Muted text color */
+  font-size: 0.9rem;
+  padding-top: 20px;
+}
+
+footer a {
+  text-decoration: none;
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #0d6efd; /* Primary theme color */
+}
+
+/* Social Media Section */
+footer .border-bottom {
+  border-color: #dee2e6;
+}
+
+footer .text-reset {
+  color: inherit;
+}
+
+footer .d-flex a {
+  margin-right: 15px;
+  font-size: 24px;
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+
+footer .d-flex a:hover {
+  color: #0d6efd;
+}
+
+/* Logo and Description */
+footer .fw-bold img {
+  display: block;
+  margin: 0 auto 15px;
+}
+
+footer p {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Links Section */
+footer h6 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #212529;
+}
+
+footer .container .row .col-md-2 a,
+footer .container .row .col-md-3 a {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+footer .container .row .col-md-2 a:hover,
+footer .container .row .col-md-3 a:hover {
+  color: #0d6efd;
+}
+
+/* Contact Info */
+footer .fas {
+  margin-right: 8px;
+}
+
+footer .col-md-4 p {
+  margin-bottom: 10px;
+}
+
+/* Bottom Section */
+footer .p-4 {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-size: 0.9rem;
+}
+
+footer .p-4 a {
+  font-weight: bold;
+  color: #0d6efd;
+}
+
+footer .p-4 a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  footer .container .row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  footer .container .row .col-md-2,
+  footer .container .row .col-md-3,
+  footer .container .row .col-md-4 {
+    margin-bottom: 20px;
+  }
+
+  footer .fw-bold img {
+    margin: 0 auto 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  footer p {
+    font-size: 0.85rem;
+  }
+
+  footer .d-flex a {
+    font-size: 20px;
+  }
+
+  footer h6 {
+    font-size: 0.95rem;
+  }
+}

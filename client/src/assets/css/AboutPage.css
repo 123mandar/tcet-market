@@ -1,0 +1,189 @@
+.row {
+  align-items: center;
+  justify-content: space-between;
+}
+.col {
+  text-align: start;
+  margin: 4rem auto;
+  max-width: 650px;
+  padding: 0.1rem;
+  font-family: Arial, sans-serif;
+}
+
+.col h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.highlight {
+  background-color: #ffea70;
+  padding: 0.1em;
+  color: #2c3e50;
+}
+
+.col p {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 1rem;
+}
+
+.search-bar {
+  margin-top: 1.5rem;
+  position: relative;
+  max-width: 500px;
+  margin-right: auto;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  text-align: left;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #cce7ff;
+}
+
+.search-bar input:focus {
+  border-color: #2c3e50;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+.search-bar input:focus + .search-icon {
+  color: #2c3e50;
+}
+
+.subtext {
+  font-size: 0.9rem;
+  color: #2c3e50;
+  margin-top: 0.75rem;
+}
+
+.col img {
+  /* Adjust width and height as needed */
+  width: 600px;
+  height: auto;
+  /* Center the image horizontally */
+  margin: 0 auto;
+  /* Add border-radius for rounded corners, if desired */
+  border-radius: 10px;
+  /* Add box-shadow for a subtle shadow effect, if desired */
+}
+
+.icon {
+  vertical-align: middle; /* Adjust vertical alignment as needed */
+}
+.animated-element {
+  animation: myAnimation 5s infinite alternate;
+}
+
+@keyframes myAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 992px) {
+  /* Adjust column stacking on medium screens */
+  .animated-element .row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .animated-element .col {
+    margin-bottom: 20px;
+  }
+
+  /* Adjust image sizes */
+  .animated-element .img-fluid {
+    max-width: 80%;
+    height: auto;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Center align text and reduce heading font sizes */
+  .animated-element h1 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+
+  .animated-element p {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+  }
+
+  /* Adjust search bar */
+  .animated-element .search-bar {
+    margin: 10px auto;
+    width: 100%;
+  }
+
+  .animated-element .search-bar input {
+    width: 80%;
+    padding: 8px;
+    font-size: 1rem;
+  }
+
+  .animated-element .search-icon {
+    margin-left: 5px;
+  }
+
+  /* Button adjustments */
+  .animated-element .btn {
+    font-size: 0.9rem;
+    width: 70%;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Reduce spacing and image size on small screens */
+  .animated-element h1 {
+    font-size: 1.5rem;
+  }
+
+  .animated-element p {
+    font-size: 0.9rem;
+  }
+
+  .animated-element .img-fluid {
+    max-width: 100%;
+  }
+
+  .animated-element .search-bar input {
+    width: 90%;
+    padding: 6px;
+    font-size: 0.9rem;
+  }
+
+  /* Button adjustments for small screens */
+  .animated-element .btn {
+    font-size: 0.8rem;
+    width: 80%;
+    padding: 8px;
+  }
+}

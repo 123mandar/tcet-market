@@ -1,0 +1,24 @@
+/* Style the scrollbar for WebKit browsers (Chrome, Edge, Safari) */
+.scrollable-container::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background color of the scrollbar track */
+  border-radius: 4px; /* Rounded corners for the track */
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  background: #dda92f; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded corners for the thumb */
+}
+
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: #d18c1c; /* Thumb color on hover */
+}
+
+/* Optional: Add cross-browser compatibility */
+.scrollable-container {
+  scrollbar-width: thin; /* For Firefox: thin scrollbar */
+  scrollbar-color: #dda92f #f1f1f1; /* Thumb and track colors */
+}
