@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { useAuth } from "../../context/authContext";
+import tcet_logo from "./../../assets/img/tcetshieldlogo-removebg-preview.png";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -81,7 +82,7 @@ const LoginPage = () => {
       <div className="login-container">
         <header className="login-header">
           <img
-            src="/tcetshieldlogo-removebg-preview.png" // replace with your logo path
+            src={tcet_logo} // replace with your logo path
             alt="TCET Marketplace Logo"
             className="login-logo"
           />
