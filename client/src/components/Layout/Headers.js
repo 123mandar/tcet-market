@@ -15,6 +15,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa"; // Icons for nav items
 import "../../assets/css/Headers.css";
+import tcet_logo from "../../assets/img/tcetshieldlogo-removebg-preview.png";
 
 const Headers = () => {
   const [auth, setAuth] = useAuth();
@@ -54,7 +55,7 @@ const Headers = () => {
         {/* Logo and Branding */}
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <img
-            src="/tcetshieldlogo-removebg-preview.png"
+            src={tcet_logo}
             alt="TCET Marketplace Logo"
             className="logo-img"
           />
