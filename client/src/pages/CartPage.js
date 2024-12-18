@@ -131,7 +131,7 @@ const CartPage = () => {
                       className="btn btn-primary"
                       onClick={() => handleCheckout(item._id)}
                     >
-                      Checkout
+                      sCheckout
                     </button>
                     <button
                       className="btn btn-danger ms-2"
