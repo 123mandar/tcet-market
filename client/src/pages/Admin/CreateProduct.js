@@ -14,7 +14,6 @@ const CreateProduct = () => {
   const [productQuantity, setProductQuantity] = useState("");
   const [shipping, setShipping] = useState(false);
   const [productPhoto, setProductPhoto] = useState(null);
-  const [sellerName, setSellerName] = useState(""); // Add state for seller's name
   const navigate = useNavigate(); // Use navigate for redirection
 
   // Fetch categories from the API
@@ -60,7 +59,6 @@ const CreateProduct = () => {
         setProductQuantity("");
         setShipping(false);
         setProductPhoto(null);
-        setSellerName(""); // Reset seller name
         setSelectedCategory("");
         toast.success("Product created successfully!");
         setTimeout(() => navigate("/dashboard/admin/update-product"), 1500); // Redirect after success
@@ -107,24 +105,6 @@ const CreateProduct = () => {
                       required
                     />
                   </div>
-
-                  {/* Seller Name */}
-                  <div className="mb-3">
-                    <label htmlFor="sellerName" className="form-label">
-                      Seller Name
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="sellerName"
-                      value={sellerName}
-                      onChange={(e) => setSellerName(e.target.value)}
-                      placeholder="Enter seller's name"
-                      required
-                    />
-                  </div>
-
-                  {/* Select Category */}
                   <div className="mb-3">
                     <label htmlFor="category" className="form-label">
                       Select Category

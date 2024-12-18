@@ -114,7 +114,7 @@ const CreateCategory = () => {
                 className="card-header text-black"
                 style={{ backgroundColor: "#dda92f" }}
               >
-                <h3>Create Category</h3>
+                <h3>Create Product Category</h3>
               </div>
               <div className="card-body">
                 <form onSubmit={createCategory}>
