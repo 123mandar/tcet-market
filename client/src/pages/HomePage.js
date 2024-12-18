@@ -233,6 +233,15 @@ const HomePage = () => {
                           </p>
                         )}
 
+                        {product.sellerId && product.sellerId.phone && (
+                          <p
+                            className="fw-bold"
+                            style={{ fontSize: "0.85rem", color: "#6c757d" }}
+                          >
+                            Phone: {product.sellerId.phone}
+                          </p>
+                        )}
+
                         <div className="d-flex justify-content-between mt-auto">
                           <button
                             className="btn btn-secondary w-50"
