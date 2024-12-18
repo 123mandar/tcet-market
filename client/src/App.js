@@ -20,7 +20,6 @@ import CreateUserProduct from "./pages/User/CreateUserProduct";
 import ManageProducts from "./pages/User/ManageProducts";
 import ManageOrders from "./pages/User/ManageOrders";
 import RentPage from "./pages/RentPage";
-import RentProduct from "./pages/User/RentProduct";
 
 function App() {
   return (
@@ -43,7 +42,6 @@ function App() {
               path="user/create-order"
               element={<CreateUserProduct />}
             ></Route>
-            <Route path="user/rent-order" element={<RentProduct />}></Route>
             <Route
               path="user/manage-products"
               element={<ManageProducts />}
