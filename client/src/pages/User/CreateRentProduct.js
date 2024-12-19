@@ -37,7 +37,7 @@ const CreateRentProduct = () => {
       formData.append("sellerId", auth.user._id); // Add sellerId from logged-in user
 
       const { data } = await axios.post(
-        "/api/rent-product/create-rent-product",
+        "/api/v1/rent-product/create-rent-product",
         formData
       );
 

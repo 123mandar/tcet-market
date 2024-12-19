@@ -24,7 +24,7 @@ app.use("/api/v1/contact", contactRoute);
 app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/product", productRoute);
 app.use("/api/v1/order", orderRoute);
-app.use("/api/rent-product", rentProductRoutes);
+app.use("/api/v1/rent-product", rentProductRoutes);
 
 app.get("/", (req, res) => {
   res.send({ message: "Welcome to the TCET Marketplace API!" });

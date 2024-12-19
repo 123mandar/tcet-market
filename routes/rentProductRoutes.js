@@ -7,7 +7,6 @@ import {
   getSingleRentProductController,
   getUserRentProductsController,
   rentProductPhotoController,
-  updateRentProductController,
 } from "../controllers/rentProductController.js";
 import formidable from "express-formidable";
 
@@ -31,13 +30,6 @@ router.delete(
   "/delete-rent-product/:pid",
   requireSignIn,
   deleteRentProductController
-);
-
-router.put(
-  "/update-rent-product/:pid",
-  requireSignIn,
-  formidable(),
-  updateRentProductController
 );
 
 router.get(

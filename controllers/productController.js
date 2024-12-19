@@ -208,7 +208,6 @@ export const updateProductController = async (req, res) => {
   }
 };
 
-// For buyer details
 export const getUserProductsController = async (req, res) => {
   try {
     const sellerId = req.user._id; // Get the logged-in seller's ID

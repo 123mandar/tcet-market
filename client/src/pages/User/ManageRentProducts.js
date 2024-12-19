@@ -1,36 +1,29 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Layout from "../../components/Layout/Layout";
 import UserMenu from "../../components/Layout/UserMenu";
 import { AiFillDelete } from "react-icons/ai"; // Import delete icon
 import toast from "react-hot-toast";
-import { useAuth } from "../../context/authContext";
 
 const ManageRentProducts = () => {
   const [rentProducts, setRentProducts] = useState([]);
-  const [auth] = useAuth();
 
   // Fetch rent products associated with the logged-in seller
-  const fetchSellerRentProducts = useCallback(async () => {
+  const fetchSellerRentProducts = async () => {
     try {
       const { data } = await axios.get(
-        "/api/v1/rent-product/seller-rent-products",
-        {
-          headers: {
-            Authorization: `Bearer ${auth.token}`,
-          },
-        }
+        "/api/v1/rent-product/seller-rent-products"
       );
 
       if (data.success) {
-        setRentProducts(data.products); // Correctly set the 'products' data from the response
+        setRentProducts(data.rentProducts); // Ensure the key matches 'rentProducts'
       } else {
         console.error(data.message || "Failed to fetch rent products");
       }
     } catch (error) {
       console.error("Error fetching rent products:", error.message);
     }
-  }, [auth.token]); // Add 'auth.token' to dependencies
+  };
 
   // Delete rent product function
   const deleteRentProduct = async (productId) => {
@@ -61,7 +54,7 @@ const ManageRentProducts = () => {
 
   useEffect(() => {
     fetchSellerRentProducts();
-  }, [fetchSellerRentProducts]); // Include 'fetchSellerRentProducts' in the dependencies array
+  }, []);
 
   return (
     <Layout title="User Dashboard | Manage Rent Products">
