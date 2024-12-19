@@ -20,7 +20,7 @@ const UserMenu = () => {
           Sell Product
         </NavLink>
         <NavLink
-          to="/dashboard/user/rent-order"
+          to="/dashboard/user/create-rent-order"
           className="list-group-item list-group-item-action"
         >
           Rent Product
@@ -30,6 +30,12 @@ const UserMenu = () => {
           className="list-group-item list-group-item-action"
         >
           Manage Your Products
+        </NavLink>
+        <NavLink
+          to="/dashboard/user/manage-rented-products"
+          className="list-group-item list-group-item-action"
+        >
+          Manage Your Rented Products
         </NavLink>
         <NavLink
           to="/dashboard/user/manage-orders"

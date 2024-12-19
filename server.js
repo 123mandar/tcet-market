@@ -7,6 +7,7 @@ import contactRoute from "./routes/contactRoute.js";
 import categoryRoute from "./routes/categoryRoute.js";
 import productRoute from "./routes/productRoute.js";
 import orderRoute from "./routes/orderRoute.js";
+import rentProductRoutes from "./routes/rentProductRoutes.js";
 import cors from "cors";
 
 dotenv.config();
@@ -23,6 +24,7 @@ app.use("/api/v1/contact", contactRoute);
 app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/product", productRoute);
 app.use("/api/v1/order", orderRoute);
+app.use("/api/rent-product", rentProductRoutes);
 
 app.get("/", (req, res) => {
   res.send({ message: "Welcome to the TCET Marketplace API!" });
