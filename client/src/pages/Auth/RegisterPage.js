@@ -57,7 +57,7 @@ const RegisterPage = () => {
 
       // Send the Google token to backend for verification
       const response = await axios.post(
-        `http://localhost:8080/api/v1/auth/google-login`,
+        `https://tcet-market.onrender.com/api/v1/auth/google-login`,
         { token }
       );
 
