@@ -18,10 +18,13 @@ const LoginPage = () => {
     e.preventDefault(); // Prevent default form submission
     try {
       // Make a POST request to register the user
-      const res = await axios.post("/api/v1/auth/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/v1/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
       // If the registration is successful
       if (res && res.data.success) {
         toast.success(res.data.message); // Show success message
