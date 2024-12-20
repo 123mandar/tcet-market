@@ -19,7 +19,7 @@ const LoginPage = () => {
     try {
       // Make a POST request to register the user
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/v1/auth/login`,
+        `$https://tcet-market.onrender.com/api/v1/auth/login`,
         {
           email,
           password,
