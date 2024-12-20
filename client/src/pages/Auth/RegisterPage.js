@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { useAuth } from "../../context/authContext";
+import tcet_logo from "../../assets/img/tcetshieldlogo-removebg-preview.png";
 
 const RegisterPage = () => {
   // State hooks for form data
@@ -83,7 +84,7 @@ const RegisterPage = () => {
         <div className="login-container">
           <header className="login-header">
             <img
-              src="/tcetshieldlogo-removebg-preview.png" // replace with your logo path
+              src={tcet_logo}
               alt="TCET Marketplace Logo"
               className="login-logo"
             />
