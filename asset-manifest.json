@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/tcet-market/static/css/main.50fb61d3.css",
+    "main.js": "/tcet-market/static/js/main.b3008abf.js",
+    "static/js/453.419a5d54.chunk.js": "/tcet-market/static/js/453.419a5d54.chunk.js",
+    "static/media/6181789.png": "/tcet-market/static/media/6181789.f8ee195caeb9006c9ac3.png",
+    "static/media/cart.jpg": "/tcet-market/static/media/cart.d9ecffb02cea9cbfd212.jpg",
+    "static/media/rent.png": "/tcet-market/static/media/rent.7ca3a20fd0dbab005c00.png",
+    "static/media/buy.png": "/tcet-market/static/media/buy.d5686e2991ad26ab9abb.png",
+    "static/media/sell.png": "/tcet-market/static/media/sell.eeedc3660f9b95760fcb.png",
+    "static/media/AboutLogo.png": "/tcet-market/static/media/AboutLogo.dcfe57f5b8be403df1ae.png",
+    "static/media/tcetshieldlogo-removebg-preview.png": "/tcet-market/static/media/tcetshieldlogo-removebg-preview.ab39a2a8361305ce6e67.png",
+    "index.html": "/tcet-market/index.html",
+    "main.50fb61d3.css.map": "/tcet-market/static/css/main.50fb61d3.css.map",
+    "main.b3008abf.js.map": "/tcet-market/static/js/main.b3008abf.js.map",
+    "453.419a5d54.chunk.js.map": "/tcet-market/static/js/453.419a5d54.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.50fb61d3.css",
+    "static/js/main.b3008abf.js"
+  ]
+}

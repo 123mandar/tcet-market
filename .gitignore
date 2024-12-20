@@ -1,0 +1,14 @@
+.env
+node_modules/
+package-lock.json
+.vscode
+.gitconfig
+*.lock
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
