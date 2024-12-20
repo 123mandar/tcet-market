@@ -11,9 +11,12 @@ const AdminRoute = () => {
   useEffect(() => {
     const authCheck = async () => {
       try {
-        const res = await axios.get("/api/v1/auth/admin-auth", {
-          headers: { Authorization: `Bearer ${auth.token}` }, // Explicitly include token
-        });
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/v1/auth/admin-auth`,
+          {
+            headers: { Authorization: `Bearer ${auth.token}` }, // Explicitly include token
+          }
+        );
         if (res.data.ok) {
           setOk(true);
         } else {

@@ -28,7 +28,9 @@ const UpdateForm = ({ productData, refreshProducts }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get("/api/v1/category/get-category");
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/v1/category/get-category`
+        );
         if (data.success) {
           setCategory(data.getCategory);
         } else {
@@ -56,7 +58,7 @@ const UpdateForm = ({ productData, refreshProducts }) => {
       if (productPhoto) formData.append("photo", productPhoto);
 
       const { data } = await axios.put(
-        `/api/v1/product/update-product/${productData._id}`,
+        `${process.env.REACT_APP_API_URL}/api/v1/product/update-product/${productData._id}`,
         formData
       );
 
