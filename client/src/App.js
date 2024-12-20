@@ -22,6 +22,7 @@ import ManageOrders from "./pages/User/ManageOrders";
 import RentPage from "./pages/RentPage";
 import CreateRentProduct from "./pages/User/CreateRentProduct";
 import ManageRentProducts from "./pages/User/ManageRentProducts";
+import RentProductPage from "./pages/RentProductPage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
           <Route path="/rent" element={<RentPage />}></Route>
+          <Route path="/rent/products" element={<RentProductPage />}></Route>
           <Route path="/contact" element={<ContactPage />}></Route>
           <Route path="/policy" element={<PolicyPage />}></Route>
           <Route path="/register" element={<RegisterPage />}></Route>
