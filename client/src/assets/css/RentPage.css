@@ -47,7 +47,7 @@
   margin-bottom: 1.5rem;
 }
 
-.rent-btn {
+.rentPage-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -57,13 +57,14 @@
   font-weight: bold;
   padding: 0.75rem 1.5rem;
   border-radius: 5px;
+  width: 60%;
   transition: background-color 0.3s;
 }
 
-.rent-btn:hover {
+.rentPage-btn:hover {
   background-color: #5c636a;
 }
 
-.rent-btn .icon {
+.rentPage-btn .icon {
   font-size: 1.2rem;
 }

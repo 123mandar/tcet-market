@@ -66,7 +66,7 @@ const RentPage = () => {
               <div className="rent-card-content">
                 <h3>{category.name}</h3>
                 <p>{category.description}</p>
-                <Link to={category.link} className="rent-btn">
+                <Link to={category.link} className="rentPage-btn">
                   <FaInfoCircle className="icon" />
                   View Details
                 </Link>
