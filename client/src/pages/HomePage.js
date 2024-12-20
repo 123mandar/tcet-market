@@ -198,7 +198,16 @@ const HomePage = () => {
                         }}
                       />
                       <div className="card-body d-flex flex-column">
-                        <h5 className="card-title">{product.name}</h5>
+                        <h1
+                          className="card-title"
+                          style={{
+                            fontWeight: "bold",
+                            color: "black",
+                            fontSize: "20px",
+                          }}
+                        >
+                          {product.name}
+                        </h1>
                         {product.category && (
                           <b
                             className="text-muted"

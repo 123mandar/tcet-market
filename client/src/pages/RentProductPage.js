@@ -3,8 +3,7 @@ import Layout from "../components/Layout/Layout";
 import axios from "axios";
 import CurvedBackground from "../components/Layout/CurvedBackground";
 import Spinners from "../components/Layout/Spinners";
-import { useNavigate } from "react-router-dom";
-import { FaHandHolding, FaSearch } from "react-icons/fa";
+import { FaEnvelope, FaSearch, FaWhatsapp } from "react-icons/fa";
 
 const RentProductPage = () => {
   const [products, setProducts] = useState([]);
@@ -12,10 +11,7 @@ const RentProductPage = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
   const [loadingProducts] = useState(false);
-  const navigate = useNavigate();
   const categories = [
     { name: "Books", value: "Books" },
     { name: "Electronics", value: "Electronics" },
@@ -27,8 +23,6 @@ const RentProductPage = () => {
 
   const resetFilters = () => {
     setSelectedCategory("all");
-    setMinPrice("");
-    setMaxPrice("");
     setSearchQuery("");
   };
 
@@ -123,28 +117,6 @@ const RentProductPage = () => {
                   </option>
                 ))}
               </select>
-
-              {/* Price Filter */}
-              <div className="row g-2 mb-3">
-                <div className="col">
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={minPrice}
-                    onChange={(e) => setMinPrice(e.target.value)}
-                    placeholder="Min"
-                  />
-                </div>
-                <div className="col">
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={maxPrice}
-                    onChange={(e) => setMaxPrice(e.target.value)}
-                    placeholder="Max"
-                  />
-                </div>
-              </div>
               <button
                 className="btn btn-secondary w-100"
                 onClick={resetFilters}
@@ -178,7 +150,17 @@ const RentProductPage = () => {
                         }}
                       />
                       <div className="card-body d-flex flex-column">
-                        <h5 className="card-title">{product.name}</h5>
+                        <h1
+                          className="card-title"
+                          style={{
+                            fontWeight: "bold",
+                            color: "black",
+                            fontSize: "20px",
+                          }}
+                        >
+                          {product.name}
+                        </h1>
+
                         <b
                           className="text-muted"
                           style={{ fontSize: "0.85rem" }}
@@ -205,6 +187,7 @@ const RentProductPage = () => {
                           {product.isSold ? "Sold" : "Available"}
                         </p>
 
+                        {/* Seller Details */}
                         {/* Seller Name */}
                         {product.sellerId && product.sellerId.name && (
                           <p
@@ -214,23 +197,62 @@ const RentProductPage = () => {
                             Owner: {product.sellerId.name}
                           </p>
                         )}
-                        {product.sellerId && product.sellerId.phone && (
+
+                        {/* Seller Email */}
+                        {product.sellerId && product.sellerId.email && (
                           <p
                             className="fw-bold"
                             style={{ fontSize: "0.85rem", color: "#6c757d" }}
                           >
-                            Contact: {product.sellerId.phone}
+                            Mail: {product.sellerId.email}
+                          </p>
+                        )}
+
+                        {/* Contact Information */}
+                        {product.sellerId && (
+                          <p
+                            className="fw-bold"
+                            style={{ fontSize: "0.85rem", color: "#6c757d" }}
+                          >
+                            Contact:{" "}
+                            {product.sellerId.phone != null
+                              ? product.sellerId.phone
+                              : product.sellerId.email || "NA"}
                           </p>
                         )}
 
                         <div className="d-flex justify-content-between mt-auto">
-                          <button
-                            className="btn btn-secondary w-50"
-                            onClick={() => navigate(`/product/${product.slug}`)}
-                          >
-                            <FaHandHolding className="me-2" />
-                            Borrow Item
-                          </button>
+                          {product.sellerId && product.sellerId.phone ? (
+                            <button
+                              className="btn btn-secondary w-100"
+                              onClick={() => {
+                                const message = `Hi, I'm interested in borrowing the ${product.name}.`;
+                                const ownerPhoneNumber = product.sellerId.phone; // Dynamically use the seller's phone number
+                                const encodedMessage =
+                                  encodeURIComponent(message); // Ensure the message is properly URL encoded
+                                const whatsappUrl = `https://wa.me/${ownerPhoneNumber}?text=${encodedMessage}`;
+                                window.open(whatsappUrl, "_blank");
+                              }}
+                            >
+                              <FaWhatsapp className="me-2" />
+                              Contact Owner
+                            </button>
+                          ) : product.sellerId && product.sellerId.email ? (
+                            <a
+                              href={`mailto:${product.sellerId.email}?subject=Inquiry%20about%20${product.name}&body=Hi%2C%20I'm%20interested%20in%20borrowing%20${product.name}.`}
+                              className="btn btn-secondary w-100"
+                            >
+                              <FaEnvelope className="me-2" />
+                              Contact Owner
+                            </a>
+                          ) : (
+                            <p
+                              className="fw-bold"
+                              style={{ fontSize: "0.85rem", color: "#6c757d" }}
+                            >
+                              No contact information available
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>
