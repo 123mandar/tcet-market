@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://123mandar.github.io/tcet-market",  
+  "build-and-deploy": "npm run build && npm run deploy",
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
     "@testing-library/jest-dom": "^5.17.0",
