@@ -129,9 +129,6 @@ body {
   transition: color 0.3s ease;
 }
 
-.product-name:hover {
-  color: #007bff;
-}
 
 .product-category {
   font-size: 1.1rem;

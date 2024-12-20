@@ -56,7 +56,7 @@ export const getRentProductController = async (req, res) => {
   try {
     const rentProducts = await rentProductModel
       .find({})
-      .populate("sellerId", "name")
+      .populate("sellerId", "name email phone")
       .select("-photo")
       .sort({ createdAt: -1 });
 

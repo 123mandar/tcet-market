@@ -6,6 +6,7 @@ import { FaCreditCard, FaSearch } from "react-icons/fa";
 import "../assets/css/ScrollBar.css";
 import { useNavigate } from "react-router-dom";
 import Spinners from "../components/Layout/Spinners";
+import CurvedBackground from "../components/Layout/CurvedBackground";
 
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
@@ -102,6 +103,7 @@ const HomePage = () => {
 
   return (
     <Layout title="TCET Marketplace">
+      <CurvedBackground />
       <div className="container-fluid py-4">
         <div className="row align-items-start">
           {/* Sidebar */}
@@ -230,6 +232,14 @@ const HomePage = () => {
                             style={{ fontSize: "0.85rem", color: "#6c757d" }}
                           >
                             Sold by: {product.sellerId.name}
+                          </p>
+                        )}
+                        {product.sellerId && product.sellerId.phone && (
+                          <p
+                            className="fw-bold"
+                            style={{ fontSize: "0.85rem", color: "#6c757d" }}
+                          >
+                            Contact: {product.sellerId.phone}
                           </p>
                         )}
 

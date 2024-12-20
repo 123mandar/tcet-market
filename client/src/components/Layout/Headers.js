@@ -99,7 +99,7 @@ const Headers = () => {
                 to="/rent"
                 className="nav-link d-flex align-items-center"
               >
-                <FaHandHolding className="me-2" /> Rent
+                <FaHandHolding className="me-2" /> Borrow
               </NavLink>
             </li>
             <li className="nav-item">

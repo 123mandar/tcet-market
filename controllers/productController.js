@@ -63,7 +63,7 @@ export const getProductController = async (req, res) => {
     const getProduct = await productModel
       .find({})
       .populate("category") // Populating category
-      .populate("sellerId", "name") // Populate seller's name dynamically using sellerId
+      .populate("sellerId", "name email phone") // Populate seller's name dynamically using sellerId
       .select("-photo") // Exclude photo from response
       .sort({ createdAt: -1 }); // Sort by creation date in descending order
 
