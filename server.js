@@ -15,7 +15,14 @@ dotenv.config();
 const app = express();
 connectDB();
 
-app.use(cors({ origin: "https://123mandar.github.io/tcet-market" }));
+app.use(
+  cors({
+    origin: "https://123mandar.github.io", // Replace with your GitHub Pages URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Include credentials like cookies
+  })
+);
+
 app.use(express.json());
 app.use(morgan("dev"));
 
