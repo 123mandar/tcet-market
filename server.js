@@ -15,7 +15,11 @@ dotenv.config();
 const app = express();
 connectDB();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://123mandar.github.io",
+  })
+);
 
 app.use(express.json());
 app.use(morgan("dev"));
