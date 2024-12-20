@@ -57,7 +57,7 @@ const RegisterPage = () => {
 
       // Send the Google token to backend for verification
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/v1/auth/google-login`,
+        `http://localhost:8080/api/v1/auth/google-login`,
         { token }
       );
 
