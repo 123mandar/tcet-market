@@ -23,7 +23,7 @@ const RegisterPage = () => {
     try {
       // Send registration request to backend
       const res = await axios.post(
-        "https://tcet-market.onrender.com/api/v1/auth/register",
+        "http://localhost:8080/api/v1/auth/register",
         {
           name,
           email,
