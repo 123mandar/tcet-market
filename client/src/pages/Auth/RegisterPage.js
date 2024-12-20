@@ -22,12 +22,15 @@ const RegisterPage = () => {
     e.preventDefault(); // Prevent default form submission
     try {
       // Send registration request to backend
-      const res = await axios.post("/api/v1/auth/register", {
-        name,
-        email,
-        password,
-        phone,
-      });
+      const res = await axios.post(
+        "https://tcet-market.onrender.com/api/v1/auth/register",
+        {
+          name,
+          email,
+          password,
+          phone,
+        }
+      );
 
       if (res && res.data.success) {
         // Registration successful, show success message
@@ -53,7 +56,10 @@ const RegisterPage = () => {
       const token = credentialResponse.credential; // Extract token from response
 
       // Send the Google token to backend for verification
-      const response = await axios.post("/api/v1/auth/google-login", { token });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/v1/auth/google-login`,
+        { token }
+      );
 
       if (response.data.success) {
         // If Google login is successful
