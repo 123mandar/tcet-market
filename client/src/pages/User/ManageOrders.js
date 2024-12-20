@@ -16,7 +16,9 @@ const ManageOrders = () => {
     const fetchOrders = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get("/api/v1/order/seller-orders");
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/v1/order/seller-orders`
+        );
         if (data.success) {
           setOrders(data.orders);
           setTotalSales(data.totalSales); // Set total sales from the response
@@ -37,7 +39,7 @@ const ManageOrders = () => {
   const handleUpdateStatus = async (orderId, newStatus) => {
     try {
       const { data } = await axios.put(
-        `/api/v1/order/update-status/${orderId}`,
+        `${process.env.REACT_APP_API_URL}/api/v1/order/update-status/${orderId}`,
         { status: newStatus }
       );
 
@@ -64,7 +66,7 @@ const ManageOrders = () => {
       }
 
       const { data } = await axios.delete(
-        `/api/v1/order/delete-order/${orderId}`
+        `${process.env.REACT_APP_API_URL}/api/v1/order/delete-order/${orderId}`
       );
 
       if (data.success) {

@@ -19,7 +19,9 @@ const CreateProduct = () => {
   // Fetch categories from the API
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-category");
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/category/get-category`
+      );
       if (data.success) {
         setCategory(data.getCategory); // Set categories on success
       }
@@ -47,7 +49,7 @@ const CreateProduct = () => {
       if (productPhoto) formData.append("photo", productPhoto); // Append photo if exists
 
       const { data } = await axios.post(
-        "/api/v1/product/create-product",
+        `${process.env.REACT_APP_API_URL}/api/v1/product/create-product`,
         formData
       );
 

@@ -10,7 +10,9 @@ const ManageProducts = () => {
   // Fetch products associated with the logged-in seller
   const fetchSellerProducts = async () => {
     try {
-      const { data } = await axios.get("/api/v1/product/seller-products");
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/product/seller-products`
+      );
 
       if (data.success) {
         setProducts(data.product); // Correctly set the 'product' data from the response
@@ -31,7 +33,7 @@ const ManageProducts = () => {
 
     try {
       const { data } = await axios.delete(
-        `/api/v1/product/delete-product/${productId}`
+        `${process.env.REACT_APP_API_URL}/api/v1/product/delete-product/${productId}`
       );
 
       if (data.success) {

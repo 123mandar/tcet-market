@@ -12,7 +12,7 @@ const ManageRentProducts = () => {
   const fetchSellerRentProducts = async () => {
     try {
       const { data } = await axios.get(
-        "/api/v1/rent-product/seller-rent-products"
+        `${process.env.REACT_APP_API_URL}/api/v1/rent-product/seller-rent-products`
       );
 
       if (data.success) {
@@ -34,7 +34,7 @@ const ManageRentProducts = () => {
 
     try {
       const { data } = await axios.delete(
-        `/api/v1/rent-product/delete-rent-product/${productId}`
+        `${process.env.REACT_APP_API_URL}/api/v1/rent-product/delete-rent-product/${productId}`
       );
 
       if (data.success) {

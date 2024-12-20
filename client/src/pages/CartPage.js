@@ -21,7 +21,7 @@ const CartPage = () => {
 
     try {
       const { data } = await axios.post(
-        "/api/v1/order/create-order",
+        `${process.env.REACT_APP_API_URL}/api/v1/order/create-order`,
         { productId },
         {
           headers: { Authorization: `Bearer ${auth.token}` },
@@ -45,7 +45,7 @@ const CartPage = () => {
               };
 
               const verifyRes = await axios.post(
-                "/api/v1/order/verify-payment",
+                `${process.env.REACT_APP_API_URL}/api/v1/order/verify-payment`,
                 verifyData,
                 {
                   headers: { Authorization: `Bearer ${auth.token}` },
@@ -117,7 +117,7 @@ const CartPage = () => {
               <div className="row g-0">
                 <div className="col-md-4">
                   <img
-                    src={`/api/v1/product/get-product-photo/${item._id}`}
+                    src={`${process.env.REACT_APP_API_URL}/api/v1/product/get-product-photo/${item._id}`}
                     alt={item.name}
                     className="img-fluid rounded m-4"
                   />

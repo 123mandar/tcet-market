@@ -15,7 +15,9 @@ const CreateCategory = () => {
   // Fetch categories from the API
   const fetchCategories = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-category");
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/category/get-category`
+      );
       if (data.success) setCategories(data.getCategory);
     } catch (error) {
       toast.error("Error fetching categories");
@@ -39,7 +41,7 @@ const CreateCategory = () => {
       formData.append("name", categoryName);
 
       const { data } = await axios.post(
-        "/api/v1/category/create-category",
+        `${process.env.REACT_APP_API_URL}/api/v1/category/create-category`,
         formData
       );
 
@@ -64,7 +66,7 @@ const CreateCategory = () => {
 
     try {
       const { data } = await axios.put(
-        `/api/v1/category/update-category/${selectedCategory._id}`,
+        `${process.env.REACT_APP_API_URL}/api/v1/category/update-category/${selectedCategory._id}`,
         {
           name: updatedName,
         }
@@ -88,7 +90,7 @@ const CreateCategory = () => {
   const deleteCategory = async (id) => {
     try {
       const { data } = await axios.delete(
-        `/api/v1/category/delete-category/${id}`
+        `${process.env.REACT_APP_API_URL}/api/v1/category/delete-category/${id}`
       );
       if (data.success) {
         toast.success(`${data.delCategory.name} deleted successfully`);

@@ -30,7 +30,7 @@ const RentProductPage = () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        "/api/v1/rent-product/get-rent-products"
+        `${process.env.REACT_APP_API_URL}/api/v1/rent-product/get-rent-products`
       );
       if (data.success) {
         setProducts(data.rentProducts);
@@ -139,7 +139,7 @@ const RentProductPage = () => {
                   <div className="col-md-4 mb-4" key={product._id}>
                     <div className="card h-100 shadow-sm">
                       <img
-                        src={`/api/v1/rent-product/get-rent-product-photo/${product._id}`}
+                        src={`${process.env.REACT_APP_API_URL}/api/v1/rent-product/get-rent-product-photo/${product._id}`}
                         className="card-img-top"
                         alt={product.name}
                         style={{

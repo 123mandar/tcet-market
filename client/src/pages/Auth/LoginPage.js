@@ -19,7 +19,7 @@ const LoginPage = () => {
     try {
       // Make a POST request to register the user
       const res = await axios.post(
-        `https://tcet-market.onrender.com/api/v1/auth/login`,
+        `${process.env.REACT_APP_API_URL}/api/v1/auth/login`,
         {
           email,
           password,
@@ -53,7 +53,10 @@ const LoginPage = () => {
       const token = credentialResponse.credential; // Extract token from response
 
       // Send the Google token to backend for verification
-      const response = await axios.post("/api/v1/auth/google-login", { token });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/v1/auth/google-login`,
+        { token }
+      );
 
       if (response.data.success) {
         // If Google login is successful

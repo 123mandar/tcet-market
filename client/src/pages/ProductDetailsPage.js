@@ -18,7 +18,9 @@ const ProductDetails = () => {
   // Fetch product data
   const fetchProduct = async (slug) => {
     try {
-      const { data } = await axios.get(`/api/v1/product/get-product/${slug}`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/product/get-product/${slug}`
+      );
       if (data.success) {
         setProduct(data.singleProduct);
       } else {
@@ -75,7 +77,7 @@ const ProductDetails = () => {
             {/* Product Image */}
             <div className="col-md-6 text-center">
               <img
-                src={`/api/v1/product/get-product-photo/${product._id}`}
+                src={`${process.env.REACT_APP_API_URL}/api/v1/product/get-product-photo/${product._id}`}
                 className="card-img-top"
                 alt={product.name}
                 style={{

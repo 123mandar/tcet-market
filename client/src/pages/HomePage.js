@@ -26,7 +26,7 @@ const HomePage = () => {
       setLoadingCategories(true);
       try {
         const { data } = await axios.get(
-          `https://tcet-market.onrender.com/api/v1/category/get-category`
+          `${process.env.REACT_APP_API_URL}/api/v1/category/get-category`
         );
         if (data.success) setCategories(data.getCategory);
       } catch {
@@ -44,7 +44,9 @@ const HomePage = () => {
     const fetchProducts = async () => {
       setLoadingProducts(true);
       try {
-        const { data } = await axios.get("/api/v1/product/get-product");
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/v1/product/get-product`
+        );
         if (data.success) {
           setProducts(data.getProduct);
           setFilteredProducts(data.getProduct);
@@ -189,7 +191,7 @@ const HomePage = () => {
                   <div className="col-md-4 mb-4" key={product._id}>
                     <div className="card h-100 shadow-sm">
                       <img
-                        src={`/api/v1/product/get-product-photo/${product._id}`}
+                        src={`${process.env.REACT_APP_API_URL}/api/v1/product/get-product-photo/${product._id}`}
                         className="card-img-top"
                         alt={product.name}
                         style={{
