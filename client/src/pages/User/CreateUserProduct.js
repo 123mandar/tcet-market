@@ -211,6 +211,9 @@ const CreateProduct = () => {
                       id="photo"
                       onChange={(e) => setProductPhoto(e.target.files[0])}
                     />
+                    <small className="text-muted">
+                      Image size must be less than 1MB.
+                    </small>
                     {productPhoto && (
                       <div className="mt-3">
                         <img
@@ -219,9 +222,6 @@ const CreateProduct = () => {
                           className="img-thumbnail shadow"
                           style={{ maxHeight: "200px" }}
                         />
-                        <small className="text-muted">
-                          Image size must be less than 1MB.
-                        </small>
                       </div>
                     )}
                   </div>

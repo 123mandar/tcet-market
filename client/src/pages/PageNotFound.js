@@ -37,6 +37,11 @@ const PageNotFound = () => {
               <a target="_blank">
                 <div className="error__message message">
                   <h1 className="message__title">Page Not Found</h1>
+                  <div className="error__nav e-nav">
+                    <NavLink to={"/"} className="e-nav__link">
+                      GO TO HOME PAGE
+                    </NavLink>
+                  </div>
                   <p className="message__text">
                     We're sorry, the page you were looking for isn't found here.
                     The link you followed may either be broken or no longer
@@ -44,9 +49,6 @@ const PageNotFound = () => {
                   </p>
                 </div>
               </a>
-              <div className="error__nav e-nav">
-                <NavLink to={"/"} className="e-nav__link"></NavLink>
-              </div>
             </div>
             {/* END Content */}
           </section>
