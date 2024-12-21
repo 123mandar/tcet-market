@@ -6,6 +6,7 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import "../../assets/css/Footers.css";
+import tcet_logo from "../../assets/img/tcetshieldlogo-removebg-preview.png";
 
 const Footers = () => {
   const currentYear = new Date().getFullYear();
@@ -37,7 +38,7 @@ const Footers = () => {
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 <h6 className="fw-bold mb-4">
                   <img
-                    src="/tcetshieldlogo-removebg-preview.png" // Replace with your logo image path
+                    src={tcet_logo} // Replace with your logo image path
                     alt="TCET Marketplace Logo"
                     style={{
                       margin: "auto",
