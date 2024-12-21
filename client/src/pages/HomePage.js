@@ -18,6 +18,7 @@ const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [loadingCategories, setLoadingCategories] = useState(false);
   const [loadingProducts, setLoadingProducts] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false); // State to toggle the filter
   const navigate = useNavigate();
 
   // Fetch all categories
@@ -109,10 +110,23 @@ const HomePage = () => {
     <Layout title="TCET Marketplace">
       <CurvedBackground />
       <div className="container-fluid py-4">
-        <div className="row align-items-start">
-          {/* Sidebar */}
-          <div className="col-md-3">
-            <div className="card shadow-sm p-3">
+        <div className="row align-items-start ">
+          {/* Sidebar (Filter Section) */}
+          <div className="col-md-3 ">
+            {/* Filter toggle button visible only on small screens */}
+            <button
+              className="btn btn-primary d-block d-md-none mb-3 w-100"
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
+            >
+              {isFilterOpen ? "Hide Filters" : "Show Filters"}
+            </button>
+
+            {/* Filter section is always visible on large screens */}
+            <div
+              className={`card shadow-sm p-3 ${
+                isFilterOpen ? "d-block" : "d-none"
+              } d-md-block`}
+            >
               {/* Search Bar */}
               <h5 className="fw-bold mb-3">Search</h5>
               <div className="input-group mb-3">
@@ -177,7 +191,6 @@ const HomePage = () => {
               </button>
             </div>
           </div>
-
           {/* Product List */}
           <div className="col-md-9">
             {loadingProducts ? (

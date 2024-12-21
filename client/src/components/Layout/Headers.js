@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-import { useCart } from "../../context/cartContext"; // Import useCart to access cart state
+import { useCart } from "../../context/cartContext";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import {
@@ -13,46 +13,37 @@ import {
   FaHandHolding,
   FaTachometerAlt,
   FaSignOutAlt,
+  FaBars, // Added for custom navbar toggler
 } from "react-icons/fa"; // Icons for nav items
 import "../../assets/css/Headers.css";
 import tcet_logo from "../../assets/img/tcetshieldlogo-removebg-preview.png";
 
 const Headers = () => {
   const [auth, setAuth] = useAuth();
-  const { cart, clearCart } = useCart(); // Access the cart and clearCart function from the context
+  const { cart, clearCart } = useCart();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Clear auth state
     setAuth({
       ...auth,
       user: null,
       token: "",
     });
-
-    // Remove auth data from local storage
     localStorage.removeItem("auth");
-
-    // Clear cart and navigate with delay
-    clearCart(); // Ensure clearCart runs before the timeout
-
-    // Set a timeout to delay navigation
+    clearCart();
     setTimeout(() => {
       navigate("/login");
-    }, 1000); // 2-second delay
-
-    toast.success("Logged out successfully!"); // Show toast before navigating
+    }, 1000);
+    toast.success("Logged out successfully!");
   };
 
-  // Get the total number of items in the cart
   const getCartItemCount = () => {
-    return cart.reduce((total, item) => total + item.quantity, 0); // Sum all the item quantities
+    return cart.reduce((total, item) => total + item.quantity, 0);
   };
 
   return (
     <nav className="navbar navbar-expand-lg bg-light shadow-sm">
       <div className="container-fluid">
-        {/* Logo and Branding */}
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <img
             src={tcet_logo}
@@ -60,13 +51,13 @@ const Headers = () => {
             className="logo-img"
           />
           <div className="logo-name">
-            <h5 className="mb-0">Thakur College Marketplace</h5>
+            <h5 className="mb-0">TCET Marketplace</h5>
           </div>
         </Link>
 
-        {/* Navbar Toggle for Mobile */}
+        {/* Custom Navbar Toggler Button */}
         <button
-          className="navbar-toggler"
+          className="navbar-toggler custom-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarTogglerDemo01"
@@ -74,13 +65,12 @@ const Headers = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon" />
+          <FaBars /> {/* Use custom icon for toggler */}
         </button>
 
         {/* Navbar Links */}
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            {/* Navigation Links with Icons */}
             <li className="nav-item">
               <NavLink to="/" className="nav-link d-flex align-items-center">
                 <FaHome className="me-2" /> Home
@@ -109,7 +99,6 @@ const Headers = () => {
               >
                 <FaShoppingCart className="me-2" />
                 Cart
-                {/* Conditionally display the badge only if there are items in the cart */}
                 {getCartItemCount() > 0 && (
                   <span
                     className="badge position-absolute"

@@ -11,7 +11,6 @@ const RentProductPage = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [loadingProducts] = useState(false);
   const categories = [
     { name: "Books", value: "Books" },
     { name: "Electronics", value: "Electronics" },
@@ -83,13 +82,13 @@ const RentProductPage = () => {
     >
       <CurvedBackground />
       <div className="container-fluid py-4">
-        <div className="row align-items-start">
-          {/* Sidebar */}
-          <div className="col-md-3">
+        <div className="row">
+          {/* Sidebar for Filters */}
+          <div className="col-12 col-md-3 mb-4">
             <div className="card shadow-sm p-3">
               {/* Search Bar */}
               <h5 className="fw-bold mb-3">Search</h5>
-              <div className="input-group mb-3">
+              <div className="input-group mb-4">
                 <input
                   type="text"
                   className="form-control"
@@ -104,21 +103,24 @@ const RentProductPage = () => {
 
               {/* Category Filter */}
               <h5 className="fw-bold mb-3">Categories</h5>
+              <div className="mb-3">
+                <select
+                  className="form-select"
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                >
+                  <option value="all">All Categories</option>
+                  {categories.map((category) => (
+                    <option key={category.value} value={category.value}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-              <select
-                className="form-select scrollable-container mb-3"
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-              >
-                <option value="all">All Categories</option>
-                {categories.map((category) => (
-                  <option key={category._id} value={category._id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
+              {/* Reset Button */}
               <button
-                className="btn btn-secondary w-100"
+                className="btn btn-secondary w-100 mt-3"
                 onClick={resetFilters}
               >
                 Reset Filters
@@ -127,133 +129,70 @@ const RentProductPage = () => {
           </div>
 
           {/* Product List */}
-          <div className="col-md-9">
-            {loadingProducts ? (
-              <Spinners />
-            ) : filteredProducts.length > 0 ? (
-              <div
-                className="row scrollable-container"
-                style={{ maxHeight: "80vh", overflowY: "auto" }}
-              >
+          <div className="col-12 col-md-9">
+            {filteredProducts.length > 0 ? (
+              <div className="row row-cols-1 row-cols-md-3 g-4">
                 {filteredProducts.map((product) => (
-                  <div className="col-md-4 mb-4" key={product._id}>
+                  <div className="col" key={product._id}>
                     <div className="card h-100 shadow-sm">
                       <img
                         src={`${process.env.REACT_APP_API_URL}/api/v1/rent-product/get-rent-product-photo/${product._id}`}
                         className="card-img-top"
                         alt={product.name}
                         style={{
-                          maxHeight: "200px",
+                          height: "200px",
                           objectFit: "cover",
-                          padding: "10px",
                           borderRadius: "5px",
                         }}
                       />
                       <div className="card-body d-flex flex-column">
-                        <h1
-                          className="card-title"
-                          style={{
-                            fontWeight: "bold",
-                            color: "black",
-                            fontSize: "20px",
-                          }}
-                        >
-                          {product.name}
-                        </h1>
-
-                        <b
-                          className="text-muted"
-                          style={{ fontSize: "0.85rem" }}
-                        >
+                        <h5 className="card-title">{product.name}</h5>
+                        <p className="card-text text-muted">
                           {product.category}
-                        </b>
-                        <p
-                          className="card-text text-muted"
-                          style={{ fontSize: "0.9rem" }}
-                        >
-                          {product.description}
                         </p>
+                        <p className="card-text">{product.description}</p>
                         <p className="text-success fw-bold">
                           ₹{product.pricePerDay}/Day
                         </p>
-
-                        {/* Sold status */}
                         <p
                           className={`fw-bold ${
                             product.isSold ? "text-danger" : "text-success"
                           }`}
-                          style={{ fontSize: "0.9rem" }}
                         >
                           {product.isSold ? "Sold" : "Available"}
                         </p>
 
-                        {/* Seller Details */}
-                        {/* Seller Name */}
+                        {/* Seller Information */}
                         {product.sellerId && product.sellerId.name && (
-                          <p
-                            className="fw-bold"
-                            style={{ fontSize: "0.85rem", color: "#6c757d" }}
-                          >
+                          <p className="card-text text-muted">
                             Owner: {product.sellerId.name}
                           </p>
                         )}
-
-                        {/* Seller Email */}
+                        {product.sellerId && product.sellerId.phone && (
+                          <button
+                            className="btn btn-outline-success w-100 mb-2"
+                            onClick={() => {
+                              const message = `Hi, I'm interested in borrowing the ${product.name}.`;
+                              const ownerPhoneNumber = product.sellerId.phone;
+                              const encodedMessage =
+                                encodeURIComponent(message);
+                              const whatsappUrl = `https://wa.me/${ownerPhoneNumber}?text=${encodedMessage}`;
+                              window.open(whatsappUrl, "_blank");
+                            }}
+                          >
+                            <FaWhatsapp className="me-2" />
+                            Contact via WhatsApp
+                          </button>
+                        )}
                         {product.sellerId && product.sellerId.email && (
-                          <p
-                            className="fw-bold"
-                            style={{ fontSize: "0.85rem", color: "#6c757d" }}
+                          <a
+                            href={`mailto:${product.sellerId.email}?subject=Inquiry%20about%20${product.name}&body=Hi%2C%20I'm%20interested%20in%20borrowing%20${product.name}.`}
+                            className="btn btn-outline-primary w-100"
                           >
-                            Mail: {product.sellerId.email}
-                          </p>
+                            <FaEnvelope className="me-2" />
+                            Contact via Email
+                          </a>
                         )}
-
-                        {/* Contact Information */}
-                        {product.sellerId && (
-                          <p
-                            className="fw-bold"
-                            style={{ fontSize: "0.85rem", color: "#6c757d" }}
-                          >
-                            Contact:{" "}
-                            {product.sellerId.phone != null
-                              ? product.sellerId.phone
-                              : product.sellerId.email || "NA"}
-                          </p>
-                        )}
-
-                        <div className="d-flex justify-content-between mt-auto">
-                          {product.sellerId && product.sellerId.phone ? (
-                            <button
-                              className="btn btn-secondary w-100"
-                              onClick={() => {
-                                const message = `Hi, I'm interested in borrowing the ${product.name}.`;
-                                const ownerPhoneNumber = product.sellerId.phone; // Dynamically use the seller's phone number
-                                const encodedMessage =
-                                  encodeURIComponent(message); // Ensure the message is properly URL encoded
-                                const whatsappUrl = `https://wa.me/${ownerPhoneNumber}?text=${encodedMessage}`;
-                                window.open(whatsappUrl, "_blank");
-                              }}
-                            >
-                              <FaWhatsapp className="me-2" />
-                              Contact Owner
-                            </button>
-                          ) : product.sellerId && product.sellerId.email ? (
-                            <a
-                              href={`mailto:${product.sellerId.email}?subject=Inquiry%20about%20${product.name}&body=Hi%2C%20I'm%20interested%20in%20borrowing%20${product.name}.`}
-                              className="btn btn-secondary w-100"
-                            >
-                              <FaEnvelope className="me-2" />
-                              Contact Owner
-                            </a>
-                          ) : (
-                            <p
-                              className="fw-bold"
-                              style={{ fontSize: "0.85rem", color: "#6c757d" }}
-                            >
-                              No contact information available
-                            </p>
-                          )}
-                        </div>
                       </div>
                     </div>
                   </div>
