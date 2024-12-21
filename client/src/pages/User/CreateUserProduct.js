@@ -219,6 +219,9 @@ const CreateProduct = () => {
                           className="img-thumbnail shadow"
                           style={{ maxHeight: "200px" }}
                         />
+                        <small className="text-muted">
+                          Image size must be less than 1MB.
+                        </small>
                       </div>
                     )}
                   </div>

@@ -158,6 +158,9 @@ const CreateRentProduct = () => {
                       id="photo"
                       onChange={(e) => setProductPhoto(e.target.files[0])}
                     />
+                    <small className="text-muted">
+                      Image size must be less than 1MB.
+                    </small>
                     {productPhoto && (
                       <div className="mt-3">
                         <img

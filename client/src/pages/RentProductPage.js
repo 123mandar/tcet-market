@@ -192,7 +192,7 @@ const RentProductPage = () => {
                             {product.description}
                           </p>
                           <p className="text-success fw-bold">
-                            ₹{product.pricePerDay}
+                            ₹{product.pricePerDay}/Day
                           </p>
 
                           {/* Sold status */}

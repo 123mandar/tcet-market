@@ -1,6 +1,6 @@
 import fs from "fs";
 import slugify from "slugify";
-import rentProductModel from "../models/rentProductModel.js.js";
+import rentProductModel from "../models/rentProductModel.js";
 
 // Create Rent Product
 export const createRentProductController = async (req, res) => {
