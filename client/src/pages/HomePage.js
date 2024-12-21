@@ -113,7 +113,6 @@ const HomePage = () => {
         <div className="row align-items-start ">
           {/* Sidebar (Filter Section) */}
           <div className="col-md-3 ">
-            {/* Filter toggle button visible only on small screens */}
             <button
               className="btn btn-primary d-block d-md-none mb-3 w-100"
               onClick={() => setIsFilterOpen(!isFilterOpen)}
