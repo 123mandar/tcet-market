@@ -13,7 +13,8 @@ import {
   FaHandHolding,
   FaTachometerAlt,
   FaSignOutAlt,
-  FaBars, // Added for custom navbar toggler
+  FaBars,
+  FaUserTie, // Added for custom navbar toggler
 } from "react-icons/fa"; // Icons for nav items
 import "../../assets/css/Headers.css";
 import tcet_logo from "../../assets/img/tcetshieldlogo-removebg-preview.png";
@@ -90,6 +91,14 @@ const Headers = () => {
                 className="nav-link d-flex align-items-center"
               >
                 <FaHandHolding className="me-2" /> Borrow
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                to="/hire-service"
+                className="nav-link d-flex align-items-center"
+              >
+                <FaUserTie className="me-2" /> Hire
               </NavLink>
             </li>
             <li className="nav-item">
