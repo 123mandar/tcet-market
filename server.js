@@ -9,7 +9,6 @@ import productRoute from "./routes/productRoute.js";
 import orderRoute from "./routes/orderRoute.js";
 import rentProductRoutes from "./routes/rentProductRoutes.js";
 import visitorRoutes from "./routes/visitorRoutes.js";
-
 import cors from "cors";
 
 dotenv.config();
