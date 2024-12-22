@@ -95,7 +95,7 @@ const Headers = () => {
             </li>
             <li className="nav-item">
               <NavLink
-                to="/hire-service"
+                to="/service"
                 className="nav-link d-flex align-items-center"
               >
                 <FaUserTie className="me-2" /> Hire

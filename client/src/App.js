@@ -41,7 +41,7 @@ function App() {
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/*" element={<PageNotFound />}></Route>
-          <Route path="/hire-service" element={<HirePage />}></Route>
+          <Route path="/service" element={<HirePage />}></Route>
 
           <Route path="/dashboard" element={<PrivateRoute />}>
             <Route path="user" element={<UserDashboard />}></Route>
