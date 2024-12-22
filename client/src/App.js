@@ -23,6 +23,7 @@ import RentPage from "./pages/RentPage";
 import CreateRentProduct from "./pages/User/CreateRentProduct";
 import ManageRentProducts from "./pages/User/ManageRentProducts";
 import RentProductPage from "./pages/RentProductPage";
+import HirePage from "./pages/HirePage";
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/*" element={<PageNotFound />}></Route>
+          <Route path="/hire-service" element={<HirePage />}></Route>
+
           <Route path="/dashboard" element={<PrivateRoute />}>
             <Route path="user" element={<UserDashboard />}></Route>
             <Route
@@ -60,6 +63,7 @@ function App() {
             ></Route>
             <Route path="user/manage-orders" element={<ManageOrders />}></Route>
           </Route>
+
           <Route path="/dashboard" element={<AdminRoute />}>
             <Route path="admin" element={<AdminDashboard />}></Route>
             <Route

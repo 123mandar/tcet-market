@@ -276,7 +276,7 @@ const AboutPage = () => {
               <button
                 type="button"
                 className="btn btn-secondary w-50 d-flex justify-content-center align-items-center"
-                onClick={() => navigate("/dashboard/user/rent-order")}
+                onClick={() => navigate("dashboard/user/create-rent-order")}
               >
                 <FaHandHolding />
                 &nbsp;Rent

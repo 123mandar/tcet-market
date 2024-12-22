@@ -1,0 +1,98 @@
+/* Container styling */
+.hire-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  /* Grid layout */
+  .hire-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  /* Card styling */
+  .hire-card {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .hire-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Card image */
+  .hire-card-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  /* Card content */
+  .hire-card-content {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .hire-card-content h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .hire-card-content p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  
+  /* Button styling */
+  .hirePage-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #dda92f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  .hirePage-btn:hover {
+    background-color: #2c3e50;
+  }
+  
+  .hirePage-btn .icon {
+    margin-right: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .hire-card-img {
+      height: 120px;
+    }
+  
+    .hire-card-content h3 {
+      font-size: 1rem;
+    }
+  
+    .hire-card-content p {
+      font-size: 0.85rem;
+    }
+  
+    .hirePage-btn {
+      font-size: 0.8rem;
+    }
+  }
+  
