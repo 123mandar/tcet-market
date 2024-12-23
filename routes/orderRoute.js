@@ -4,8 +4,9 @@ import {
   getSellerOrdersController,
   deleteOrderController,
   verifyPaymentController,
+  getAllOrdersController,
 } from "../controllers/orderController.js";
-import { requireSignIn } from "../middlewares/authMiddleware.js";
+import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
@@ -17,6 +18,8 @@ router.post("/verify-payment", requireSignIn, verifyPaymentController);
 
 // Fetch seller orders
 router.get("/seller-orders", requireSignIn, getSellerOrdersController);
+
+router.get("/manage-order", requireSignIn, isAdmin, getAllOrdersController);
 
 // Delete an order
 router.delete("/delete-order/:orderId", requireSignIn, deleteOrderController);

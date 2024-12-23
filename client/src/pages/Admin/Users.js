@@ -1,53 +1,43 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import "../../assets/css/ProfileMenu.css";
+import Layout from "../../components/Layout/Layout";
+import AdminMenu from "../../components/Layout/AdminMenu";
+import { useAuth } from "../../context/authContext.js"; // Use auth context for authentication state
+import Spinners from "../../components/Layout/Spinners.js";
 
-const Users = () => {
-  return (
-    <>
-      <div className="list-group ">
-        <NavLink
-          to="/dashboard/admin"
-          style={{ backgroundColor: "#dda92f", border: " 1px solid #dda92f " }}
-          className="list-group-item list-group-item-action"
-        >
-          <div className="card-header text-black">
-            <h3>Admin Panel</h3>
-          </div>
-        </NavLink>
-        <NavLink
-          to="/dashboard/admin/create-category"
-          className="list-group-item list-group-item-action"
-        >
-          Product Category
-        </NavLink>
-        <NavLink
-          to="/dashboard/admin/create-product"
-          className="list-group-item list-group-item-action"
-        >
-          Sell Product
-        </NavLink>
-        <NavLink
-          to="/dashboard/admin/update-product"
-          className="list-group-item list-group-item-action"
-        >
-          Update Product
-        </NavLink>
-        <NavLink
-          to="/dashboard/admin/orders"
-          className="list-group-item list-group-item-action"
-        >
-          Manage Orders
-        </NavLink>
-        <NavLink
-          to="/dashboard/admin/user"
-          className="list-group-item list-group-item-action"
-        >
-          Users
-        </NavLink>
+const AdminUser = () => {
+  const [auth] = useAuth(); // Access auth state and setter function
+  if (!auth || !auth.user) {
+    return (
+      <div>
+        <Spinners />
       </div>
-    </>
+    );
+  }
+  return (
+    <Layout title="Admin Dashboard | Category Details">
+      <div className="container py-4">
+        <div
+          className="row"
+          style={{ alignItems: "flex-start", marginTop: "0px" }}
+        >
+          <div className="col-md-3 mb-4">
+            <AdminMenu />
+          </div>
+          <div className="col-md-9">
+            <div className="card shadow">
+              <div
+                className="card-header text-black"
+                style={{ backgroundColor: "#dda92f" }}
+              >
+                <h3>Users Details</h3>
+              </div>
+              <div className="card-body"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Layout>
   );
 };
 
-export default Users;
+export default AdminUser;

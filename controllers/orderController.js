@@ -106,6 +106,29 @@ export const getSellerOrdersController = async (req, res) => {
   }
 };
 
+// Fetch orders
+export const getAllOrdersController = async (req, res) => {
+  try {
+    // Fetch all orders with populated buyer, seller, and product details
+    const orders = await orderModel
+      .find({})
+      .populate("buyer", "name email phone") // Populate buyer details
+      .populate("seller", "name email") // Populate seller details
+      .populate("product", "name price category"); // Populate product details
+
+    // Calculate total sales by summing up the price of all orders
+    const totalSales = orders.reduce((acc, order) => {
+      acc += Number(order.product.price); // Convert price to a number if necessary
+      return acc;
+    }, 0);
+
+    res.status(200).json({ success: true, orders, totalSales });
+  } catch (error) {
+    console.error("Error fetching all orders for admin:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+
 // Delete an order
 export const deleteOrderController = async (req, res) => {
   try {

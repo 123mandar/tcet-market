@@ -24,6 +24,8 @@ import CreateRentProduct from "./pages/User/CreateRentProduct";
 import ManageRentProducts from "./pages/User/ManageRentProducts";
 import RentProductPage from "./pages/RentProductPage";
 import HirePage from "./pages/HirePage";
+import AdminRentProduct from "./pages/Admin/AdminRentProduct";
+import UpdateRentProduct from "./pages/Admin/UpdateDelRentProduct";
 
 function App() {
   return (
@@ -75,7 +77,19 @@ function App() {
               element={<CreateProduct />}
             ></Route>
             <Route
+              path="admin/rent-product"
+              element={<AdminRentProduct />}
+            ></Route>
+            <Route
               path="admin/update-product"
+              element={<UpdateDelProduct />}
+            ></Route>
+            <Route
+              path="admin/update-rent-product"
+              element={<UpdateRentProduct />}
+            ></Route>
+            <Route
+              path="admin/manage-order"
               element={<UpdateDelProduct />}
             ></Route>
             <Route path="admin/user" element={<Users />}></Route>
