@@ -128,14 +128,16 @@ const HomePage = () => {
             >
               {/* Search Bar */}
               <h5 className="fw-bold mb-3">Search</h5>
-              <div className="input-group mb-3">
+              <div className="d-flex mb-3">
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control me-2"
+                  style={{ width: "450px" }} // Adjust width as needed
                   placeholder="Search products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
+
                 <button className="btn btn-outline-secondary">
                   <FaSearch />
                 </button>
