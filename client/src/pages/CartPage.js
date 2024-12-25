@@ -7,6 +7,7 @@ import axios from "axios";
 import { useAuth } from "../context/authContext";
 import cart_img from "./../assets/img/cart.jpg";
 import { FaShoppingCart } from "react-icons/fa";
+import CurvedBackground from "../components/Layout/CurvedBackground";
 
 const CartPage = () => {
   const { cart, removeFromCart, clearCart } = useCart();
@@ -108,6 +109,7 @@ const CartPage = () => {
   return (
     <Layout>
       <div className="container py-5">
+        <CurvedBackground />
         <h1 className="text-center mb-4">
           <FaShoppingCart className="me-2" />
           Your Cart
@@ -121,7 +123,6 @@ const CartPage = () => {
                     src={`${process.env.REACT_APP_API_URL}/api/v1/product/get-product-photo/${item._id}`}
                     alt={item.name}
                     className="img-fluid rounded-start"
-                    style={{ maxHeight: "200px", objectFit: "cover" }}
                   />
                 </div>
                 <div className="col-md-8">
