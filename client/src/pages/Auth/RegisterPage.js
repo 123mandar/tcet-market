@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { useAuth } from "../../context/authContext";
 import tcet_logo from "../../assets/img/tcetshieldlogo-removebg-preview.png";
+import CurverdBackground from "../../components/Layout/CurvedBackground";
 
 const RegisterPage = () => {
   // State hooks for form data
@@ -87,6 +88,7 @@ const RegisterPage = () => {
   return (
     <>
       <Layout title={"Register | TCET Marketplace"}>
+        <CurverdBackground />
         <div className="login-container">
           <header className="login-header">
             <img
@@ -104,6 +106,7 @@ const RegisterPage = () => {
                 <input
                   type="text"
                   value={name}
+                  placeholder="Please enter first name..."
                   onChange={(e) => setName(e.target.value)}
                   className="form-control"
                   required
@@ -116,6 +119,7 @@ const RegisterPage = () => {
                 <input
                   type="email"
                   value={email}
+                  placeholder="Please enter email..."
                   onChange={(e) => setEmail(e.target.value)}
                   className="form-control"
                   required
@@ -130,6 +134,7 @@ const RegisterPage = () => {
                 <input
                   type="password"
                   value={password}
+                  placeholder="Please enter password..."
                   onChange={(e) => setPassword(e.target.value)}
                   className="form-control"
                   required
@@ -144,6 +149,7 @@ const RegisterPage = () => {
                 <input
                   type="tel"
                   value={phone}
+                  placeholder="Please enter first phone number..."
                   onChange={(e) => setPhone(e.target.value)}
                   className="form-control"
                 />

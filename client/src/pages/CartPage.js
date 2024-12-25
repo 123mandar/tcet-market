@@ -92,9 +92,10 @@ const CartPage = () => {
             alt="Empty Cart"
             style={{ width: "200px", marginBottom: "20px" }}
           />
-          <h1>Your Cart</h1>
+          <h1>Your cart is empty</h1>
           <button
             className="btn btn-secondary mt-3"
+            style={{ width: "150px" }} /* Adjust width as needed */
             onClick={() => navigate("/")}
           >
             Go to Home

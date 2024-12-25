@@ -25,7 +25,7 @@ const RentPage = () => {
       name: "Sports Equipment",
       image:
         "https://plus.unsplash.com/premium_photo-1714573122708-d1b42332e0a5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8U3BvcnRzJTIwRXF1aXBtZW50fGVufDB8fDB8fHww",
-      description: "Rent sports gear for activities.",
+      description: "Rent sports gear for activities and more.",
       link: "/rent/products",
     },
     {

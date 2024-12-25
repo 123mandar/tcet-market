@@ -1,20 +1,20 @@
 /* RentPage.css */
 .rent-container {
-  padding: 2rem 1rem;
+  padding: 2rem;
   max-width: 1200px;
   margin: auto;
 }
 
 .rent-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
 }
 
 .rent-card {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -26,38 +26,40 @@
 
 .rent-card-img {
   width: 100%;
-  height: 200px;
+  height: 150px;
   object-fit: cover;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .rent-card-content {
-  padding: 1.5rem;
+  padding: 1rem;
   text-align: center;
 }
 
 .rent-card-content h3 {
-  font-size: 1.5rem;
-  color: #222;
-  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
 }
 
 .rent-card-content p {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1rem;
 }
 
 .rentPage-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  padding: 0.5rem 1rem;
   background-color: #dda92f;
   color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 0.75rem 1.5rem;
+  border: none;
   border-radius: 5px;
-  width: 60%;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
   transition: background-color 0.3s;
 }
 
@@ -66,5 +68,25 @@
 }
 
 .rentPage-btn .icon {
-  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .rent-card-img {
+    height: 120px;
+  }
+
+  .rent-card-content h3 {
+    font-size: 1rem;
+  }
+
+  .rent-card-content p {
+    font-size: 0.85rem;
+  }
+
+  .rentPage-btn {
+    font-size: 0.8rem;
+  }
 }

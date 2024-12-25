@@ -202,6 +202,10 @@
     width: 70%;
     padding: 10px;
   }
+
+  .animated-element .row {
+    margin: 5px;
+  }
 }
 
 @media (max-width: 576px) {

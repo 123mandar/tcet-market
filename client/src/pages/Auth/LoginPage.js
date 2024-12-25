@@ -7,7 +7,7 @@ import axios from "axios";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { useAuth } from "../../context/authContext";
 import tcet_logo from "./../../assets/img/tcetshieldlogo-removebg-preview.png";
-
+import CurvedBackground from "../../components/Layout/CurvedBackground";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -85,6 +85,8 @@ const LoginPage = () => {
 
   return (
     <Layout title={"Login | TCET Marketplace"}>
+      <CurvedBackground />
+
       <div className="login-container">
         <header className="login-header">
           <img
