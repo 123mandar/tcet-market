@@ -132,13 +132,16 @@ const HomePage = () => {
                 <input
                   type="text"
                   className="form-control me-2"
-                  style={{ width: "450px" }} // Adjust width as needed
+                  style={{ width: "100%" }} // Adjust width as needed
                   placeholder="Search products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
 
-                <button className="btn btn-outline-secondary">
+                <button
+                  className="btn btn-outline-secondary"
+                  style={{ width: "50%" }}
+                >
                   <FaSearch />
                 </button>
               </div>

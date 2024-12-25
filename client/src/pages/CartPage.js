@@ -95,7 +95,7 @@ const CartPage = () => {
           <h1>Your cart is empty</h1>
           <button
             className="btn btn-secondary mt-3"
-            style={{ width: "150px" }} /* Adjust width as needed */
+            style={{ width: "150px" }} // Adjust width as needed
             onClick={() => navigate("/")}
           >
             Go to Home
@@ -114,32 +114,37 @@ const CartPage = () => {
         </h1>
         <div className="cart-items">
           {cart.map((item) => (
-            <div key={item._id} className="card mb-3">
+            <div key={item._id} className="card mb-3 shadow-sm">
               <div className="row g-0">
                 <div className="col-md-4">
                   <img
                     src={`${process.env.REACT_APP_API_URL}/api/v1/product/get-product-photo/${item._id}`}
                     alt={item.name}
-                    className="img-fluid rounded m-4"
+                    className="img-fluid rounded-start"
+                    style={{ maxHeight: "200px", objectFit: "cover" }}
                   />
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
                     <h5 className="card-title">{item.name}</h5>
-                    <p>Price: ₹{item.price}</p>
-                    <p>Quantity: {item.quantity}</p>
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => handleCheckout(item._id)}
-                    >
-                      Checkout
-                    </button>
-                    <button
-                      className="btn btn-danger ms-2"
-                      onClick={() => removeFromCart(item._id)}
-                    >
-                      Remove
-                    </button>
+                    <p className="card-text">Price: ₹{item.price}</p>
+                    <p className="card-text">Quantity: {item.quantity}</p>
+                    <div className="d-flex gap-3">
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => handleCheckout(item._id)}
+                        style={{ width: "100px" }}
+                      >
+                        Checkout
+                      </button>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => removeFromCart(item._id)}
+                        style={{ width: "100px" }}
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
