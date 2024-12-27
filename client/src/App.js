@@ -23,9 +23,13 @@ import RentPage from "./pages/RentPage";
 import CreateRentProduct from "./pages/User/CreateRentProduct";
 import ManageRentProducts from "./pages/User/ManageRentProducts";
 import RentProductPage from "./pages/RentProductPage";
-import HirePage from "./pages/HirePage";
+import ServicePage from "./pages/ServicePage";
 import AdminRentProduct from "./pages/Admin/AdminRentProduct";
 import UpdateRentProduct from "./pages/Admin/UpdateDelRentProduct";
+import CreateServiceProduct from "./pages/User/CreateServiceProduct";
+import ManageServiceProduct from "./pages/User/ManageServiceProducts";
+import ServiceProductPage from "./pages/ServiceProductPage";
+import ManagePurchasedProducts from "./pages/User/ManagePurchasedProduct";
 
 function App() {
   return (
@@ -43,7 +47,11 @@ function App() {
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/*" element={<PageNotFound />}></Route>
-          <Route path="/service" element={<HirePage />}></Route>
+          <Route path="/service" element={<ServicePage />}></Route>
+          <Route
+            path="/service/products"
+            element={<ServiceProductPage />}
+          ></Route>
 
           <Route path="/dashboard" element={<PrivateRoute />}>
             <Route path="user" element={<UserDashboard />}></Route>
@@ -56,6 +64,10 @@ function App() {
               element={<CreateRentProduct />}
             ></Route>
             <Route
+              path="user/create-service"
+              element={<CreateServiceProduct />}
+            ></Route>
+            <Route
               path="user/manage-products"
               element={<ManageProducts />}
             ></Route>
@@ -63,7 +75,15 @@ function App() {
               path="user/manage-rented-products"
               element={<ManageRentProducts />}
             ></Route>
+            <Route
+              path="/dashboard/user/manage-services"
+              element={<ManageServiceProduct />}
+            ></Route>
             <Route path="user/manage-orders" element={<ManageOrders />}></Route>
+            <Route
+              path="user/manage-purchased-products"
+              element={<ManagePurchasedProducts />}
+            ></Route>
           </Route>
 
           <Route path="/dashboard" element={<AdminRoute />}>

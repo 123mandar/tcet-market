@@ -106,6 +106,27 @@ export const getSellerOrdersController = async (req, res) => {
   }
 };
 
+export const getBuyerOrdersController = async (req, res) => {
+  try {
+    const buyerId = req.user._id; // Extract buyer ID from token
+    // Fetch the orders with populated buyer and product details
+    const orders = await orderModel
+      .find({ buyer: buyerId })
+      .populate("buyer", "name email phone")
+      .populate("product", "name price");
+
+    // Calculate total sales (sum of product prices for each order)
+    const totalSales = orders.reduce((acc, order) => {
+      return acc + order.product.price;
+    }, 0);
+
+    res.status(200).json({ success: true, orders, totalSales });
+  } catch (error) {
+    console.error("Error fetching buyer orders:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+
 // Fetch orders
 export const getAllOrdersController = async (req, res) => {
   try {

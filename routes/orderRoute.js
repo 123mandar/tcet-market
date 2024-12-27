@@ -5,6 +5,7 @@ import {
   deleteOrderController,
   verifyPaymentController,
   getAllOrdersController,
+  getBuyerOrdersController,
 } from "../controllers/orderController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -18,6 +19,7 @@ router.post("/verify-payment", requireSignIn, verifyPaymentController);
 
 // Fetch seller orders
 router.get("/seller-orders", requireSignIn, getSellerOrdersController);
+router.get("/buyer-orders", requireSignIn, getBuyerOrdersController);
 
 router.get("/manage-order", requireSignIn, isAdmin, getAllOrdersController);
 
