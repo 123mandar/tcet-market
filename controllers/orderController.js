@@ -115,9 +115,10 @@ export const getBuyerOrdersController = async (req, res) => {
       .populate("buyer", "name email phone")
       .populate("product", "name price");
 
-    // Calculate total sales (sum of product prices for each order)
     const totalSales = orders.reduce((acc, order) => {
-      return acc + order.product.price;
+      // Ensure the price is treated as a number, not a string
+      acc += Number(order.product.price); // Convert to number if necessary
+      return acc;
     }, 0);
 
     res.status(200).json({ success: true, orders, totalSales });

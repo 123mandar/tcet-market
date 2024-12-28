@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
@@ -14,7 +15,8 @@ import {
   FaTachometerAlt,
   FaSignOutAlt,
   FaBars,
-  FaUserTie, // Added for custom navbar toggler
+  FaUserTie,
+  FaCommentDots, // Added for custom navbar toggler
 } from "react-icons/fa"; // Icons for nav items
 import "../../assets/css/Headers.css";
 import tcet_logo from "../../assets/img/tcetshieldlogo-removebg-preview.png";
@@ -122,6 +124,14 @@ const Headers = () => {
                 )}
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                to="/chat"
+                className="nav-link d-flex align-items-center"
+              >
+                <FaCommentDots className="me-2" /> Live Chat
+              </NavLink>
+            </li>
 
             {/* Authenticated User Section */}
             {!auth.user ? (
@@ -173,6 +183,7 @@ const Headers = () => {
                 </ul>
               </li>
             )}
+
             <li className="nav-item">
               <NavLink
                 to="/contact"

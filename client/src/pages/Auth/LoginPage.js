@@ -107,6 +107,7 @@ const LoginPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 className="form-control"
                 id="exampleInputEmail1"
+                placeholder="Please enter email..."
                 required="True"
               />
             </div>
@@ -120,6 +121,7 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="form-control"
                 id="exampleInputPassword1"
+                placeholder="Please enter password..."
                 required="True"
               />
             </div>

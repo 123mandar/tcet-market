@@ -11,8 +11,6 @@ import PrivateRoute from "./components/Routes/PrivateRoute";
 import AdminRoute from "./components/Routes/AdminRoute";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import CreateCategory from "./pages/Admin/CreateCategory";
-import Users from "./pages/Admin/Users";
-import CreateProduct from "./pages/Admin/CreateProduct";
 import UpdateDelProduct from "./pages/Admin/UpdateDelProduct";
 import ProductDetails from "./pages/ProductDetailsPage";
 import CartPage from "./pages/CartPage";
@@ -24,12 +22,12 @@ import CreateRentProduct from "./pages/User/CreateRentProduct";
 import ManageRentProducts from "./pages/User/ManageRentProducts";
 import RentProductPage from "./pages/RentProductPage";
 import ServicePage from "./pages/ServicePage";
-import AdminRentProduct from "./pages/Admin/AdminRentProduct";
 import UpdateRentProduct from "./pages/Admin/UpdateDelRentProduct";
 import CreateServiceProduct from "./pages/User/CreateServiceProduct";
 import ManageServiceProduct from "./pages/User/ManageServiceProducts";
 import ServiceProductPage from "./pages/ServiceProductPage";
 import ManagePurchasedProducts from "./pages/User/ManagePurchasedProduct";
+import ChatPage from "./pages/ChatPage";
 
 function App() {
   return (
@@ -45,6 +43,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/product/:slug" element={<ProductDetails />} />
+          <Route path="/chat" element={<ChatPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/*" element={<PageNotFound />}></Route>
           <Route path="/service" element={<ServicePage />}></Route>
@@ -92,14 +91,7 @@ function App() {
               path="admin/create-category"
               element={<CreateCategory />}
             ></Route>
-            <Route
-              path="admin/create-product"
-              element={<CreateProduct />}
-            ></Route>
-            <Route
-              path="admin/rent-product"
-              element={<AdminRentProduct />}
-            ></Route>
+
             <Route
               path="admin/update-product"
               element={<UpdateDelProduct />}
@@ -112,7 +104,6 @@ function App() {
               path="admin/manage-order"
               element={<UpdateDelProduct />}
             ></Route>
-            <Route path="admin/user" element={<Users />}></Route>
           </Route>
         </Routes>
       </>
