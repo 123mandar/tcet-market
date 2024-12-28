@@ -6,7 +6,6 @@ import { useCart } from "../../context/cartContext";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import {
-  FaHome,
   FaInfoCircle,
   FaEnvelope,
   FaShoppingCart,
@@ -16,8 +15,13 @@ import {
   FaSignOutAlt,
   FaBars,
   FaUserTie,
-  FaCommentDots, // Added for custom navbar toggler
-} from "react-icons/fa"; // Icons for nav items
+  FaCommentDots,
+  FaCalendarAlt,
+  FaToolbox,
+  FaShareAlt,
+  FaCartArrowDown,
+  FaBell,
+} from "react-icons/fa";
 import "../../assets/css/Headers.css";
 import tcet_logo from "../../assets/img/tcetshieldlogo-removebg-preview.png";
 
@@ -40,9 +44,8 @@ const Headers = () => {
     toast.success("Logged out successfully!");
   };
 
-  const getCartItemCount = () => {
-    return cart.reduce((total, item) => total + item.quantity, 0);
-  };
+  const getCartItemCount = () =>
+    cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <nav className="navbar navbar-expand-lg bg-light shadow-sm">
@@ -53,12 +56,8 @@ const Headers = () => {
             alt="TCET Marketplace Logo"
             className="logo-img"
           />
-          <div className="logo-name">
-            <h5 className="mb-0">TCET Marketplace</h5>
-          </div>
         </Link>
 
-        {/* Custom Navbar Toggler Button */}
         <button
           className="navbar-toggler custom-toggler"
           type="button"
@@ -68,69 +67,85 @@ const Headers = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <FaBars /> {/* Use custom icon for toggler */}
+          <FaBars />
         </button>
 
-        {/* Navbar Links */}
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <NavLink to="/" className="nav-link d-flex align-items-center">
-                <FaHome className="me-2" /> Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                to="/about"
-                className="nav-link d-flex align-items-center"
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle d-flex align-items-center"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-                <FaInfoCircle className="me-2" /> About
-              </NavLink>
+                <FaToolbox className="me-2" /> Services
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink to="/" className="dropdown-item">
+                    <FaCartArrowDown className="me-2" /> Buy
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/rent" className="dropdown-item">
+                    <FaHandHolding className="me-2" /> Borrow
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/service" className="dropdown-item">
+                    <FaUserTie className="me-2" /> Hire
+                  </NavLink>
+                </li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink
-                to="/rent"
-                className="nav-link d-flex align-items-center"
+
+            {/* About & Support Dropdown */}
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle d-flex align-items-center"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-                <FaHandHolding className="me-2" /> Borrow
-              </NavLink>
+                <FaInfoCircle className="me-2" /> About & Support
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink to="/about" className="dropdown-item">
+                    <FaInfoCircle className="me-2" /> About Us
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/contact" className="dropdown-item">
+                    <FaEnvelope className="me-2" /> Contact Us
+                  </NavLink>
+                </li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink
-                to="/service"
-                className="nav-link d-flex align-items-center"
+
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle d-flex align-items-center"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-                <FaUserTie className="me-2" /> Hire
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                to="/cart"
-                className="nav-link d-flex align-items-center position-relative"
-              >
-                <FaShoppingCart className="me-2" />
-                Cart
-                {getCartItemCount() > 0 && (
-                  <span
-                    className="badge position-absolute"
-                    style={{
-                      top: "-5px",
-                      right: "-5px",
-                      backgroundColor: "#dda92f",
-                    }}
-                  >
-                    {getCartItemCount()}
-                  </span>
-                )}
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                to="/chat"
-                className="nav-link d-flex align-items-center"
-              >
-                <FaCommentDots className="me-2" /> Live Chat
-              </NavLink>
+                <FaShareAlt className="me-2" />
+                Connect Zone
+              </a>
+              <ul className="dropdown-menu">
+                <li className="nav-item">
+                  <NavLink to="/chat" className="dropdown-item">
+                    <FaCommentDots className="me-2" /> Community Hub
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/events" className="dropdown-item">
+                    <FaCalendarAlt className="me-2" /> Upcoming Events
+                  </NavLink>
+                </li>
+              </ul>
             </li>
 
             {/* Authenticated User Section */}
@@ -172,26 +187,36 @@ const Headers = () => {
                       }`}
                       className="dropdown-item"
                     >
-                      <FaTachometerAlt className="me-2" />
-                      Dashboard
+                      <FaTachometerAlt className="me-2" /> Dashboard
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/cart" className="dropdown-item">
+                      <FaShoppingCart className="me-2" />
+                      Cart
+                      {getCartItemCount() > 0 && (
+                        <span
+                          className="badge position-absolute"
+                          style={{
+                            top: "-5px",
+                            right: "-5px",
+                            backgroundColor: "#dda92f",
+                          }}
+                        >
+                          {getCartItemCount()}
+                        </span>
+                      )}
                     </NavLink>
                   </li>
                   <li className="dropdown-item" onClick={handleLogout}>
-                    <FaSignOutAlt className="me-2" />
-                    Logout
+                    <FaBell className="me-2" /> Notification
+                  </li>
+                  <li className="dropdown-item" onClick={handleLogout}>
+                    <FaSignOutAlt className="me-2" /> Logout
                   </li>
                 </ul>
               </li>
             )}
-
-            <li className="nav-item">
-              <NavLink
-                to="/contact"
-                className="nav-link d-flex align-items-center"
-              >
-                <FaEnvelope className="me-2" /> Contact
-              </NavLink>
-            </li>
           </ul>
         </div>
       </div>

@@ -127,15 +127,7 @@ const Footers = () => {
                   Home
                 </NavLink>
               </p>
-              <p>
-                <NavLink
-                  to={"/about"}
-                  className="text-reset"
-                  style={{ textDecoration: "None" }}
-                >
-                  About
-                </NavLink>
-              </p>
+
               <p>
                 <NavLink
                   to={"/contact"}
@@ -168,17 +160,10 @@ const Footers = () => {
             {/* Grid column for Contact Info */}
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
-              <p>
-                <i className="fas fa-home me-3" />
-                Thakur Village, Kandivali(400101), Maharashtra, India
-              </p>
-              <p>
-                <i className="fas fa-envelope me-3" />
-                mandardhage2201@gmail.com
-              </p>
-              <p>
-                <i className="fas fa-phone me-3" /> +91 9325720803
-              </p>
+              <p>Thakur Village, Kandivali(400101), Maharashtra, India</p>
+              <p>mandardhage2201@gmail.com</p>
+              <p>+91 9325720803</p>
+              <p>&nbsp;</p>
             </div>
           </div>
         </div>
