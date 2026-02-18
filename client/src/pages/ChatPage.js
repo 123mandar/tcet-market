@@ -186,7 +186,7 @@ const ChatPage = () => {
       <Layout>
         <div style={styles.container}>
           <div style={styles.header}>
-            <h4>Community Chat</h4>
+            <h4>Community</h4>
           </div>
           <div style={styles.body}>
             {!token ? (
