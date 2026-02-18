@@ -3,22 +3,24 @@ import mongoose from "mongoose";
 // Define the message schema
 const messageSchema = new mongoose.Schema(
   {
-    content: { type: String, required: true },
+    content: { type: String, required: true, trim: true },
     sender: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
-    }, // sender is now a reference to User
+    },
+    senderName: { type: String, required: true, trim: true },
+    senderEmail: { type: String, required: true, trim: true, lowercase: true },
     timestamp: { type: Date, default: Date.now },
   },
-  { timestamps: true }
+  { _id: true }
 );
 
 // Define the chat schema
 const chatSchema = new mongoose.Schema(
   {
-    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], // All users are participants
-    messages: [messageSchema], // Embed message schema
+    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    messages: [messageSchema],
   },
   { timestamps: true }
 );

@@ -1,28 +1,50 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { FaPaperPlane } from "react-icons/fa";
 import { io } from "socket.io-client";
 import Layout from "../components/Layout/Layout";
 import CurvedBackground from "../components/Layout/CurvedBackground";
 
-// Connect to the Socket.IO server
-const socket = io(`${process.env.REACT_APP_API_URL}`);
-
 const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [isSending, setIsSending] = useState(false);
+
+  const authData = useMemo(() => {
+    try {
+      return JSON.parse(localStorage.getItem("auth")) || {};
+    } catch (error) {
+      return {};
+    }
+  }, []);
+
+  const token = authData?.token;
+  const currentUserEmail = authData?.user?.email;
+
+  const socket = useMemo(
+    () =>
+      io(`${process.env.REACT_APP_API_URL}`, {
+        transports: ["websocket"],
+      }),
+    []
+  );
 
   useEffect(() => {
-    // Fetch initial messages from the backend
+    if (!token) return;
+
     const fetchMessages = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/v1/chats/messages`
+          `${process.env.REACT_APP_API_URL}/api/v1/chats/messages`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
+
         const data = await response.json();
         if (data.success) {
-          setMessages(data.messages);
-        } else {
-          console.error("Failed to fetch messages");
+          setMessages(data.messages || []);
         }
       } catch (error) {
         console.error("Error fetching messages:", error);
@@ -30,22 +52,44 @@ const ChatPage = () => {
     };
 
     fetchMessages();
+  }, [token]);
 
-    // Listen for real-time messages from Socket.IO
+  useEffect(() => {
     socket.on("chatMessage", (message) => {
       setMessages((prev) => [...prev, message]);
     });
 
     return () => {
       socket.off("chatMessage");
+      socket.disconnect();
     };
-  }, []);
+  }, [socket]);
 
-  const sendMessage = () => {
-    if (newMessage.trim()) {
-      const message = { content: newMessage };
-      socket.emit("chatMessage", message); // Emit message to server
-      setNewMessage(""); // Clear input field
+  const sendMessage = async () => {
+    if (!token || !newMessage.trim() || isSending) return;
+
+    try {
+      setIsSending(true);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/v1/chats/messages`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ content: newMessage }),
+        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+        setNewMessage("");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -76,28 +120,36 @@ const ChatPage = () => {
       overflowY: "auto",
       backgroundColor: "#f9f9f9",
       borderBottom: "1px solid #ddd",
+      display: "flex",
+      flexDirection: "column",
+      gap: "10px",
     },
     message: {
-      maxWidth: "80%",
-      marginBottom: "15px",
+      maxWidth: "85%",
+      marginBottom: "10px",
       padding: "10px",
       borderRadius: "10px",
       fontSize: "1rem",
-      lineHeight: "1.5",
-      position: "relative",
+      lineHeight: "1.4",
       backgroundColor: "#f1f1f1",
       alignSelf: "flex-start",
     },
-    buyerMessage: {
+    ownMessage: {
       backgroundColor: "#e0f7fa",
       alignSelf: "flex-end",
     },
-    timestamp: {
+    sender: {
       fontSize: "0.8rem",
+      marginBottom: "4px",
+      fontWeight: 600,
+      color: "#444",
+    },
+    timestamp: {
+      display: "block",
+      fontSize: "0.75rem",
       color: "#888",
-      position: "absolute",
-      bottom: "5px",
-      right: "10px",
+      marginTop: "6px",
+      textAlign: "right",
     },
     footer: {
       padding: "10px",
@@ -124,21 +176,7 @@ const ChatPage = () => {
       cursor: "pointer",
       marginLeft: "10px",
       borderRadius: "5px",
-    },
-    buttonHover: {
-      backgroundColor: "#0056b3",
-    },
-    responsive: {
-      "@media (max-width: 768px)": {
-        header: { fontSize: "1rem", padding: "10px" },
-        textarea: { fontSize: "0.9rem", padding: "8px" },
-        button: { padding: "8px", marginLeft: "5px" },
-      },
-      "@media (max-width: 480px)": {
-        container: { width: "100%", height: "85vh" },
-        textarea: { fontSize: "0.8rem" },
-        message: { fontSize: "0.9rem" },
-      },
+      opacity: isSending ? 0.7 : 1,
     },
   };
 
@@ -146,49 +184,61 @@ const ChatPage = () => {
     <>
       <CurvedBackground />
       <Layout>
-        <div style={{ ...styles.container, ...styles.responsive.container }}>
-          <div style={{ ...styles.header, ...styles.responsive.header }}>
+        <div style={styles.container}>
+          <div style={styles.header}>
             <h4>Community Chat</h4>
           </div>
           <div style={styles.body}>
-            {messages && messages.length > 0 ? (
-              messages.map((msg, idx) => (
-                <div
-                  key={idx}
-                  style={
-                    msg.isBuyer
-                      ? { ...styles.message, ...styles.buyerMessage }
-                      : styles.message
-                  }
-                >
-                  <p>{msg.content}</p>
-                  <span style={styles.timestamp}>
-                    {new Date(msg.timestamp).toLocaleTimeString()}
-                  </span>
-                </div>
-              ))
+            {!token ? (
+              <p>Please login to access the Community Hub.</p>
+            ) : messages.length > 0 ? (
+              messages.map((msg, idx) => {
+                const isOwnMessage =
+                  currentUserEmail &&
+                  msg.senderEmail &&
+                  msg.senderEmail === currentUserEmail;
+
+                return (
+                  <div
+                    key={msg._id || idx}
+                    style={
+                      isOwnMessage
+                        ? { ...styles.message, ...styles.ownMessage }
+                        : styles.message
+                    }
+                  >
+                    <p style={styles.sender}>{msg.senderName || "User"}</p>
+                    <p>{msg.content}</p>
+                    <span style={styles.timestamp}>
+                      {new Date(msg.timestamp).toLocaleTimeString()}
+                    </span>
+                  </div>
+                );
+              })
             ) : (
-              <p>No messages yet.</p>
+              <p>No messages yet. Start the conversation 👋</p>
             )}
           </div>
+
           <div style={styles.footer}>
             <textarea
-              style={{ ...styles.textarea, ...styles.responsive.textarea }}
+              style={styles.textarea}
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
-              placeholder="Type your message..."
+              placeholder={token ? "Type your message..." : "Login to chat"}
+              disabled={!token}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  sendMessage();
+                }
+              }}
             />
             <button
-              style={{ ...styles.button, ...styles.responsive.button }}
-              onMouseOver={(e) =>
-                (e.currentTarget.style.backgroundColor =
-                  styles.buttonHover.backgroundColor)
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.backgroundColor =
-                  styles.button.backgroundColor)
-              }
+              style={styles.button}
               onClick={sendMessage}
+              disabled={!token || isSending}
+              title={!token ? "Login required" : "Send message"}
             >
               <FaPaperPlane />
             </button>
