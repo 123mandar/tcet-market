@@ -137,31 +137,65 @@ export const testController = (req, res) => {
 // ------------------------------------------------------------------------------/
 // =============================GoogleLogin==============================//
 
-const client = new OAuth2Client(process.env.REACT_APP_CLIENT_ID);
 export const googleLoginController = async (req, res) => {
-  const { token } = req.body;
+  const { token, credential } = req.body;
+  const idToken = token || credential;
+  const googleAudiences = [
+    process.env.GOOGLE_CLIENT_IDS,
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.REACT_APP_CLIENT_ID,
+  ]
+    .filter(Boolean)
+    .flatMap((value) => value.split(","))
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  const uniqueGoogleAudiences = [...new Set(googleAudiences)];
+
+  if (!uniqueGoogleAudiences.length) {
+    return res.status(500).json({
+      success: false,
+      message: "Google login is not configured on the server",
+    });
+  }
+
+  if (!idToken) {
+    return res.status(400).json({
+      success: false,
+      message: "Google token is required",
+    });
+  }
+
+  const client = new OAuth2Client(uniqueGoogleAudiences[0]);
+
   try {
-    console.log("Received token:", token);
+    console.log("Received token for Google login");
     // Verify the token
     const ticket = await client.verifyIdToken({
-      idToken: token,
-      audience: process.env.REACT_APP_CLIENT_ID,
+      idToken,
+      audience: uniqueGoogleAudiences,
     });
     // Log after verifying the token
     console.log("Token verified successfully");
     const payload = ticket.getPayload();
-    const { email, name } = payload; // Retrieve email and name from payload
-    // Log the email and name received from Google
-    console.log("Google payload:", payload);
+    const { email, name, email_verified: emailVerified } = payload; // Retrieve email and name from payload
+
+    if (!email || !emailVerified) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid Google account details",
+      });
+    }
 
     // Check if user already exists
     let user = await userModel.findOne({ email });
     if (!user) {
       console.log("New user, creating in database");
+      const hashedGooglePassword = await hashPassword("google-auth");
       user = new userModel({
         name,
         email,
-        password: "google-auth", // Placeholder password
+        password: hashedGooglePassword,
         phone: "", // You might want to change this later based on your application needs
         role: "user",
       });
@@ -190,7 +224,10 @@ export const googleLoginController = async (req, res) => {
     });
   } catch (error) {
     console.error("Google login error:", error);
-    res.status(500).json({
+    const tokenErrorPattern = /(wrong recipient|token used too late|invalid token signature)/i;
+    const statusCode = tokenErrorPattern.test(error.message || "") ? 401 : 500;
+
+    res.status(statusCode).json({
       success: false,
       message: "Google login failed!",
       error: error.message,
